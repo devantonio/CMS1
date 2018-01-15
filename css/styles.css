@@ -1,0 +1,7 @@
+.pager li .active_link {
+	background: #555;
+}
+
+.container-fliud {
+	margin-top: -100px !important;
+}
