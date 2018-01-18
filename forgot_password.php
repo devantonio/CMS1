@@ -4,8 +4,17 @@
 
 
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-//require './vendor/autoload.php';
+
+// require './vendor/phpmailer/phpmailer/src/PHPMailer.php';
+// require './vendor/phpmailer/phpmailer/src/exception.php';
+// require './vendor/phpmailer/phpmailer/src/smtp.php';
+// require './classes/config.php';//autoload in composer.json loads this automatically composer dump-autoload -o
+
+
+
 
     if(isset($_GET['forgot_password'])){
 
@@ -42,62 +51,57 @@
                      *
                      *
                      */
+require './vendor/autoload.php';//requires all classes in classes folder
 
-        //             $mail = new PHPMailer();
+                    $mail = new PHPMailer(true);// Passing `true` enables exceptions
 
-        //             $mail->isSMTP();
-        //             $mail->Host = Config::SMTP_HOST;
-        //             $mail->Username = Config::SMTP_USER;
-        //             $mail->Password = Config::SMTP_PASSWORD;
-        //             $mail->Port = Config::SMTP_PORT;
-        //             $mail->SMTPSecure = 'tls';
-        //             $mail->SMTPAuth = true;
-        //             $mail->isHTML(true);
-        //             $mail->CharSet = 'UTF-8';
-
-
-        //             $mail->setFrom('edwin@codingfaculty.com', 'Edwin Diaz');
-        //             $mail->addAddress($email);
-
-        //             $mail->Subject = 'This is a test email';
-
-        //             $mail->Body = '<p>Please click to reset your password
-
-        //             <a href="http://localhost:/cms_template/reset.php?email='.$email.'&token='.$token.' ">http://localhost:888/cms/reset.php?email='.$email.'&token='.$token.'</a>
+		//$mail->SMTPDebug = 2;
+                    $mail->isSMTP();
+                    $mail->Host = Config::SMTP_HOST;//the class in the classes folder
+                    $mail->Username = Config::SMTP_USER;//the class in the classes folder
+                    $mail->Password = Config::SMTP_PASSWORD;//the class in the classes folder
+                    $mail->Port = Config::SMTP_PORT;//the class in the classes folder
+                    $mail->SMTPSecure = 'tls';
+                    $mail->SMTPAuth = true;
+                    $mail->isHTML(true);
+                    $mail->Charset = 'UTF-8';//como estas 
 
 
+                    $mail->setFrom('tonio.ae91@gmail.com', 'Antonio English');
+                    $mail->addAddress($email);
 
-        //             </p>';
+                    $mail->Subject = 'This is a test email';
 
+                    $mail->Body = '<p>Please click to reset your password
 
-        //             if($mail->send()){
-
-        //                 $emailSent = true;
-
-        //             } else{
-
-        //                 echo "NOT SENT";
-
-        //             }
+                    <a href="http://localhost:/cms_template/reset.php?email='.$email.'&token='.$token.' ">http://localhost:888/cms/reset.php?email='.$email.'&token='.$token.'</a>
 
 
 
+                    </p>';
 
 
-        //         }
+                        if($mail->send()) {
+                        	$emailSent = true;
+                        } else {
+                        	echo "Email not sent";
+                        }
+
+    //echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
 
 
 
 
-        //     }
+
+
+                }
 
 
 
 
-        } }
+            }
+	}
 
-
-     }
  }
 
 
@@ -123,7 +127,7 @@
                         <div class="text-center">
 
 
-                        <?php if(!isset( $emailSent)): ?>
+                        <?php if(!isset($emailSent)): ?>
 
 
                                 <h3><i class="fa fa-lock fa-4x"></i></h3>

@@ -1,4 +1,14 @@
 <?php
+
+function imagePlaceholder($image="") {
+    if(!$image) {
+        return '09.jpg';
+    } else {
+        return $image;
+    }
+}
+
+
 function escape($string) {
     global $connection;
 

@@ -1,0 +1,17 @@
+{
+    "name": "antonio/cms_template",
+    "require": {
+        "phpmailer/phpmailer": "^6.0"
+    },
+    "autoload": {
+        "classmap": [
+            "classes"
+        ]
+    },
+    "authors": [
+        {
+            "name": "devantonio",
+            "email": "tonio.ae91@gmail.com"
+        }
+    ]
+}
